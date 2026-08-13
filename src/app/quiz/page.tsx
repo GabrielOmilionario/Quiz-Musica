@@ -1,4 +1,4 @@
-import QuizFlow from "@/components/QuizFlow";
+import QuizFlow from "../../components/QuizFlow";
 
 export default function QuizPage() {
   return (

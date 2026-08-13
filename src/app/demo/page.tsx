@@ -1,4 +1,4 @@
-import AudioPlayer from "@/components/AudioPlayer";
+import AudioPlayer from "../../components/AudioPlayer";
 import Link from "next/link";
 import { Lock, Sparkles, Heart, Music, CheckCircle } from "lucide-react";
 

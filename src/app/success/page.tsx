@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { CheckCircle, Music, Download, Share2 } from "lucide-react";
-import AudioPlayer from "@/components/AudioPlayer";
+import AudioPlayer from "../../components/AudioPlayer";
 
 export default function SuccessPage() {
   const [generating, setGenerating] = useState(true);

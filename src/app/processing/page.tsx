@@ -1,4 +1,4 @@
-import ProcessingScreen from "@/components/ProcessingScreen";
+import ProcessingScreen from "../../components/ProcessingScreen";
 
 export default function ProcessingPage() {
   return (
