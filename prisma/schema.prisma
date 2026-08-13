@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  quizResponses QuizResponse[]
+  generations   Generation[]
+  payments      Payment[]
+}
+
+model QuizResponse {
+  id        String   @id @default(uuid())
+  sessionId String   @unique
+  session   Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  
+  target    String?
+  emotion   String?
+  moment    String?
+  feeling   String?
+  story     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Generation {
+  id        String   @id @default(uuid())
+  sessionId String
+  session   Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  
+  demoUrl   String?
+  fullUrl   String?
+  status    String   @default("PENDING") // PENDING, GENERATING, COMPLETED, ERROR
+  type      String   @default("DEMO")    // DEMO or FULL
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Payment {
+  id        String   @id @default(uuid())
+  sessionId String
+  session   Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  
+  stripeId  String?  @unique
+  status    String   @default("PENDING") // PENDING, PAID, FAILED
+  amount    Int      @default(999) // 9.99 BRL
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
